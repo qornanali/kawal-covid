@@ -21,14 +21,23 @@ class SummaryState extends State<SummaryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Fetch Data Example'),
+        title: Text('Kawal COVID19'),
       ),
       body: Center(
         child: FutureBuilder<ApiResponse<CovidSummary>>(
           future: _covidSummary,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return Text(snapshot.data.data.positiveCount.toString());
+              var data = snapshot.data.data;
+              return Align(
+                  child: Column(
+                    children: [
+                      Text("Jumlah positif: ${data.positiveCount}", textAlign: TextAlign.left),
+                      Text("Jumlah sembuh: ${data.recoveredCount}", textAlign: TextAlign.left),
+                      Text("Jumlah meninggal: ${data.deathCount}", textAlign: TextAlign.left),
+                      Text("Jumlah yang sudah dirawat: ${data.treatedCount}", textAlign: TextAlign.left),
+                    ],
+                  ));
             } else if (snapshot.hasError) {
               return Text("${snapshot.error}");
             }
