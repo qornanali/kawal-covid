@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:kawal_covid/api/kawal_covid/kawal_covid_client.dart';
+import 'package:kawal_covid/api/kawal_covid/kawal_corona_client.dart';
 import 'package:kawal_covid/api/kawal_covid/model/covid_summary.dart';
 import 'package:kawal_covid/core/entity/api_response.dart';
 
