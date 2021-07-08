@@ -4,10 +4,10 @@ import 'package:kawal_covid/api/kawal_covid/kawal_corona_client.dart';
 import 'package:kawal_covid/api/kawal_covid/kawal_corona_client_impl.dart';
 import 'package:kawal_covid/api/kawal_covid/model/covid_summary.dart';
 import 'package:kawal_covid/core/entity/api_response.dart';
+import 'package:kawal_covid/features/statisticlist/statistic_list_page.dart';
 import 'package:kawal_covid/features/summary/summary_page.dart';
 
 class SummaryState extends State<SummaryPage> {
-  int _counter = 0;
   KawalCovidClient kawalCovidClient = KawalCovidClientImpl(http.Client());
   Future<ApiResponse<CovidSummary>> _covidSummary;
 
@@ -25,20 +25,20 @@ class SummaryState extends State<SummaryPage> {
         ),
         body: SingleChildScrollView(
           child: Column(
-            children: [buildSummaryPanel(context)],
+            children: [_buildSummaryPanel(context)],
           ),
         ));
   }
 
-  Widget buildSummaryPanel(BuildContext buildContext) {
+  Widget _buildSummaryPanel(BuildContext buildContext) {
     return Container(
         padding: const EdgeInsets.only(top: 20.0, bottom: 10.0, left: 10.0, right: 10.0),
         child: Column(
-          children: [buildImageVirus(buildContext), buildIndonesiaStatisticPanel(buildContext)],
+          children: [_buildImageVirus(buildContext), _buildIndonesiaStatisticPanel(buildContext)],
         ));
   }
 
-  Widget buildIndonesiaStatisticPanel(BuildContext buildContext) {
+  Widget _buildIndonesiaStatisticPanel(BuildContext buildContext) {
     return Center(
       child: FutureBuilder<ApiResponse<CovidSummary>>(
         future: _covidSummary,
@@ -52,6 +52,15 @@ class SummaryState extends State<SummaryPage> {
                 Text("Jumlah sembuh: ${data.recoveredCount}", textAlign: TextAlign.left),
                 Text("Jumlah meninggal: ${data.deathCount}", textAlign: TextAlign.left),
                 Text("Jumlah yang sudah dirawat: ${data.treatedCount}", textAlign: TextAlign.left),
+                ElevatedButton(
+                  child: Text('Statistik provinsi di Indonesia'),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => StatisticListPage()),
+                    );
+                  },
+                )
               ],
             ));
           } else if (snapshot.hasError) {
@@ -63,7 +72,7 @@ class SummaryState extends State<SummaryPage> {
     );
   }
 
-  Widget buildImageVirus(BuildContext buildContext) {
+  Widget _buildImageVirus(BuildContext buildContext) {
     return Image(image: AssetImage('assets/images/virus.png'));
   }
 }
