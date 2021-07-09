@@ -22,7 +22,7 @@ class SummaryState extends State<SummaryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Kawal COVID19'),
+          title: Text('Kawal COVID-19'),
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -49,13 +49,13 @@ class SummaryState extends State<SummaryPage> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => ArticleViewerPage(
-                      pageTitle: "Gejala COVID19",
+                      pageTitle: "Gejala COVID-19",
                       articleTitle: "Kenali Gejala Orang Terinfeksi Virus Corona di Minggu Pertama",
                       articleContentFile: "assets/texts/articles-gejala-covid.txt",
                     )),
               );
             }),
-            _buildButton("Protokol 5M", () {
+            _buildButton("Protokol Pencegahan COVID-19", () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -66,6 +66,61 @@ class SummaryState extends State<SummaryPage> {
                         )),
               );
             }),
+            _buildButton("Panduan isolasi mandiri", () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ArticleViewerPage(
+                      pageTitle: "Panduan isolasi mandiri",
+                      articleTitle: "Cara Isolasi Mandiri yang Benar",
+                      articleContentFile: "assets/texts/articles-isolasi-mandiri.txt",
+                    )),
+              );
+            }),
+            _buildButton("Daftar nomor hotline", () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ArticleViewerPage(
+                      pageTitle: "Daftar nomor hotline",
+                      articleTitle: "Daftar Nomor Hotline COVID-19 di Jakarta, Jogja,Jateng hingga Papua",
+                      articleContentFile: "assets/texts/articles-hotline.txt",
+                    )),
+              );
+            }),
+            _buildButton("Proses vaksinisasi", () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ArticleViewerPage(
+                      pageTitle: "Proses vaksinisasi",
+                      articleTitle: "Vaksinisasi COVID-19",
+                      articleContentFile: "assets/texts/articles-vaksin.txt",
+                    )),
+              );
+            }),
+            _buildButton("Sejarah pandemi COVID-19", () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ArticleViewerPage(
+                      pageTitle: "Sejarah pandemi COVID-19",
+                      articleTitle: "Pandemi COVID-19",
+                      articleContentFile: "assets/texts/articles-sejarah-covid.txt",
+                    )),
+              );
+            }),
+            _buildButton("Tentang pembuat aplikasi", () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ArticleViewerPage(
+                      pageTitle: "Tentang pembuat aplikasi",
+                      articleTitle: "",
+                      articleContentFile: "assets/texts/articles-about.txt",
+                    )),
+              );
+            })
           ],
         ));
   }
